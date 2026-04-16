@@ -139,13 +139,14 @@ body {
   background: linear-gradient(150deg, #5c8be0 0%, #3d6bb8 100%);
 }
 
-.avatar-initials {
-  position: relative;
-  color: #fff;
-  font-size: 44px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+.avatar-img {
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .name {
@@ -362,7 +363,6 @@ body {
 @media (min-width: 640px) {
   .hero { padding-top: 96px; padding-bottom: 96px; }
   .avatar { width: 144px; height: 144px; }
-  .avatar-initials { font-size: 48px; }
 }
 
 /* ---------- Print ---------- */

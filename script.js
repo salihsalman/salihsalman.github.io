@@ -5,7 +5,6 @@
 
 const CONFIG = {
   name: "salih SALMAN",
-  initials: "SS",
   company: "dünya property",
   title: "",
   phone: "+90 555 061 66 66",
@@ -15,12 +14,13 @@ const CONFIG = {
   websiteUrl: "https://dunyaproperty.com",
   location: "Alanya, Antalya, Türkiye",
   mapsQuery: "Alanya, Antalya, Türkiye",
+  // Replace "#" with the real URL (leave "" to hide an icon)
   socials: {
     whatsapp:  "https://wa.me/905550616666",
-    instagram: "",
-    facebook:  "",
-    linkedin:  "",
-    telegram:  "",
+    instagram: "#",
+    facebook:  "#",
+    linkedin:  "#",
+    telegram:  "#",
   },
 };
 
@@ -134,7 +134,6 @@ function render(lang) {
   document.documentElement.lang = lang;
 
   // Text
-  $("avatarInitials").textContent = CONFIG.initials;
   $("name").textContent = CONFIG.name;
   $("valPhone").textContent = CONFIG.phone;
   $("valEmail").textContent = CONFIG.email;
