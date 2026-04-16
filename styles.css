@@ -15,17 +15,26 @@ body {
 
 main {
   text-align: center;
-  max-width: 40rem;
 }
 
 h1 {
   font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-p {
-  font-size: 1.125rem;
-  color: #94a3b8;
+button {
+  font: inherit;
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s ease;
 }
+
+button:hover { background: #7dd3fc; }
+button:active { transform: scale(0.97); }
