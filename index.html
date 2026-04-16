@@ -1,16 +1,110 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>salih SALMAN — dünya property</title>
+  <meta name="description" content="salih SALMAN · dünya property · Alanya, Antalya — iletişim kartı" />
+  <meta name="theme-color" content="#3d6bb8" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="salih SALMAN — dünya property" />
+  <meta property="og:description" content="Alanya, Antalya · Gayrimenkul danışmanı" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%233d6bb8%22/><text x=%2250%25%22 y=%2258%25%22 text-anchor=%22middle%22 font-family=%22system-ui,sans-serif%22 font-weight=%22700%22 font-size=%2232%22 fill=%22white%22>S</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main>
-    <h1 id="greeting">Hello, World!</h1>
-    <button id="btn">Click me</button>
+  <div class="lang-switcher" aria-label="Language">
+    <button class="lang-trigger" id="langTrigger" aria-haspopup="listbox" aria-expanded="false">
+      <span class="lang-flag" id="langFlag">🇹🇷</span>
+      <span class="lang-code" id="langCode">TR</span>
+      <svg class="lang-caret" viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <ul class="lang-menu" id="langMenu" role="listbox" hidden></ul>
+  </div>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="avatar" aria-hidden="true">
+      <span class="avatar-initials" id="avatarInitials">SS</span>
+    </div>
+    <h1 class="name" id="name">salih SALMAN</h1>
+  </header>
+
+  <section class="quick-actions" aria-label="Quick actions">
+    <a class="qa" id="qaPhone" href="#" aria-label="Call">
+      <span class="qa-icon" data-icon="phone"></span>
+    </a>
+    <a class="qa" id="qaEmail" href="#" aria-label="Email">
+      <span class="qa-icon" data-icon="mail"></span>
+    </a>
+    <a class="qa" id="qaMap" href="#" target="_blank" rel="noopener" aria-label="Map">
+      <span class="qa-icon" data-icon="pin"></span>
+    </a>
+  </section>
+
+  <main class="content">
+    <button class="add-contact" id="addContact">
+      <span class="ac-icon" data-icon="userPlus"></span>
+      <span id="addContactLabel">Kişi Ekle</span>
+    </button>
+
+    <section class="info-list" aria-label="Contact info">
+      <a class="info-row" id="rowPhone" href="#">
+        <span class="info-ic" data-icon="phone"></span>
+        <span class="info-text">
+          <span class="info-label" data-i18n="phone">Telefon</span>
+          <span class="info-value" id="valPhone"></span>
+        </span>
+      </a>
+      <a class="info-row" id="rowEmail" href="#">
+        <span class="info-ic" data-icon="mail"></span>
+        <span class="info-text">
+          <span class="info-label" data-i18n="email">E-posta</span>
+          <span class="info-value" id="valEmail"></span>
+        </span>
+      </a>
+      <a class="info-row" id="rowWebsite" href="#" target="_blank" rel="noopener">
+        <span class="info-ic" data-icon="globe"></span>
+        <span class="info-text">
+          <span class="info-label" data-i18n="website">İnternet sitesi</span>
+          <span class="info-value" id="valWebsite"></span>
+        </span>
+      </a>
+      <div class="info-row info-row--static">
+        <span class="info-ic" data-icon="pin"></span>
+        <span class="info-text">
+          <span class="info-label" data-i18n="location">Konum</span>
+          <span class="info-value" id="valLocation"></span>
+          <a class="map-chip" id="mapChip" href="#" target="_blank" rel="noopener">
+            <span data-i18n="showOnMap">Haritada Göster</span>
+          </a>
+        </span>
+      </div>
+      <div class="info-row info-row--static">
+        <span class="info-ic" data-icon="briefcase"></span>
+        <span class="info-text">
+          <span class="info-label" data-i18n="company">Şirket</span>
+          <span class="info-value" id="valCompany"></span>
+        </span>
+      </div>
+    </section>
+
+    <section class="socials" id="socials" aria-label="Social"></section>
+
+    <footer class="foot">
+      <span id="footName">© dünya property</span>
+      <span class="foot-url" id="footUrl" hidden></span>
+    </footer>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
