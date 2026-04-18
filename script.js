@@ -4,8 +4,8 @@
  * --------------------------------------------------------------- */
 
 const CONFIG = {
-  name: "salih SALMAN",
-  company: "dünya property",
+  name: "Salih Salman",
+  company: "Dünya Property",
   title: "",
   phone: "+90 555 061 66 66",
   phoneRaw: "+905550616666",
@@ -13,11 +13,16 @@ const CONFIG = {
   website: "dunyaproperty.com",
   websiteUrl: "https://dunyaproperty.com",
   location: "Alanya, Antalya, Türkiye",
+  mapsUrl: "https://maps.app.goo.gl/dxGDRRt2uM1F1hUL6",
   mapsQuery: "Alanya, Antalya, Türkiye",
+  credit: {
+    name: "burakgizlice",
+    url: "https://burakgizlice.com",
+  },
   // Replace "#" with the real URL (leave "" to hide an icon)
   socials: {
     whatsapp:  "https://wa.me/905550616666",
-    instagram: "#",
+    instagram: "https://www.instagram.com/salihhsalman/",
     facebook:  "#",
     linkedin:  "#",
     telegram:  "#",
@@ -30,18 +35,24 @@ const LANGS = [
   { code: "tr", flag: "🇹🇷", label: "Türkçe" },
   { code: "en", flag: "🇬🇧", label: "English" },
   { code: "ru", flag: "🇷🇺", label: "Русский" },
+  { code: "ar", flag: "🇸🇦", label: "العربية" },
+  { code: "fa", flag: "🇮🇷", label: "فارسی" },
   { code: "pl", flag: "🇵🇱", label: "Polski" },
   { code: "de", flag: "🇩🇪", label: "Deutsch" },
   { code: "uk", flag: "🇺🇦", label: "Українська" },
 ];
 
+const RTL_LANGS = new Set(["ar", "fa"]);
+
 const I18N = {
-  tr: { phone: "Telefon", email: "E-posta", website: "İnternet sitesi", location: "Konum", company: "Şirket", addContact: "Kişi Ekle", showOnMap: "Haritada Göster" },
-  en: { phone: "Phone",   email: "Email",    website: "Website",         location: "Location", company: "Company", addContact: "Add Contact", showOnMap: "Show on Map" },
-  ru: { phone: "Телефон", email: "Эл. почта", website: "Веб-сайт",        location: "Местоположение", company: "Компания", addContact: "Добавить контакт", showOnMap: "Показать на карте" },
-  pl: { phone: "Telefon", email: "E-mail",   website: "Strona",          location: "Lokalizacja", company: "Firma",  addContact: "Dodaj kontakt", showOnMap: "Pokaż na mapie" },
-  de: { phone: "Telefon", email: "E-Mail",   website: "Webseite",        location: "Standort", company: "Firma",  addContact: "Kontakt hinzufügen", showOnMap: "Auf Karte zeigen" },
-  uk: { phone: "Телефон", email: "Ел. пошта", website: "Веб-сайт",        location: "Місцезнаходження", company: "Компанія", addContact: "Додати контакт", showOnMap: "Показати на карті" },
+  tr: { phone: "Telefon", email: "E-posta", website: "İnternet sitesi", location: "Konum", company: "Şirket", addContact: "Kişi Ekle", showOnMap: "Haritada Göster", role: "Gayrimenkul Danışmanı", craftedBy: "Hazırlayan" },
+  en: { phone: "Phone",   email: "Email",    website: "Website",         location: "Location", company: "Company", addContact: "Add Contact", showOnMap: "Show on Map", role: "Real Estate Consultant", craftedBy: "Crafted by" },
+  ru: { phone: "Телефон", email: "Эл. почта", website: "Веб-сайт",        location: "Местоположение", company: "Компания", addContact: "Добавить контакт", showOnMap: "Показать на карте", role: "Консультант по недвижимости", craftedBy: "Разработка" },
+  ar: { phone: "الهاتف",  email: "البريد الإلكتروني", website: "الموقع الإلكتروني", location: "الموقع", company: "الشركة", addContact: "إضافة جهة اتصال", showOnMap: "عرض على الخريطة", role: "مستشار عقاري", craftedBy: "تصميم" },
+  fa: { phone: "تلفن",    email: "ایمیل",    website: "وب‌سایت",         location: "موقعیت", company: "شرکت", addContact: "افزودن مخاطب", showOnMap: "نمایش روی نقشه", role: "مشاور املاک", craftedBy: "طراحی" },
+  pl: { phone: "Telefon", email: "E-mail",   website: "Strona",          location: "Lokalizacja", company: "Firma",  addContact: "Dodaj kontakt", showOnMap: "Pokaż na mapie", role: "Doradca ds. nieruchomości", craftedBy: "Wykonane przez" },
+  de: { phone: "Telefon", email: "E-Mail",   website: "Webseite",        location: "Standort", company: "Firma",  addContact: "Kontakt hinzufügen", showOnMap: "Auf Karte zeigen", role: "Immobilienberater", craftedBy: "Gestaltet von" },
+  uk: { phone: "Телефон", email: "Ел. пошта", website: "Веб-сайт",        location: "Місцезнаходження", company: "Компанія", addContact: "Додати контакт", showOnMap: "Показати на карті", role: "Консультант з нерухомості", craftedBy: "Розробка" },
 };
 
 /* ---------- Inline SVG icons ---------- */
@@ -132,9 +143,14 @@ function renderSocials() {
 function render(lang) {
   const t = I18N[lang] || I18N.tr;
   document.documentElement.lang = lang;
+  document.documentElement.dir = RTL_LANGS.has(lang) ? "rtl" : "ltr";
 
   // Text
   $("name").textContent = CONFIG.name;
+  const roleEl = $("role");
+  if (roleEl) roleEl.textContent = t.role;
+  const taglineEl = $("tagline");
+  if (taglineEl) taglineEl.textContent = `${CONFIG.company} · ${CONFIG.location.split(",").slice(0, 2).join(",").trim()}`;
   $("valPhone").textContent = CONFIG.phone;
   $("valEmail").textContent = CONFIG.email;
   $("valWebsite").textContent = CONFIG.website;
@@ -143,6 +159,10 @@ function render(lang) {
   $("addContactLabel").textContent = t.addContact;
   $("footName").textContent = `© ${CONFIG.company}`;
   $("footUrl").textContent = window.location.hostname + window.location.pathname;
+  const creditEl = $("credit");
+  if (creditEl && CONFIG.credit) {
+    creditEl.innerHTML = `${t.craftedBy} <a href="${CONFIG.credit.url}" target="_blank" rel="noopener">${CONFIG.credit.name}</a>`;
+  }
 
   // i18n labels
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -153,7 +173,7 @@ function render(lang) {
   // Links
   const telHref = `tel:${CONFIG.phoneRaw}`;
   const mailHref = `mailto:${CONFIG.email}`;
-  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.mapsQuery)}`;
+  const mapHref = CONFIG.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.mapsQuery)}`;
 
   $("qaPhone").href = telHref;
   $("qaEmail").href = mailHref;
